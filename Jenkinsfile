@@ -5,7 +5,7 @@ pipeline {
   maven 'M2_HOME'
 }
 environment {
-    registry = 'dkr.ecr.us-east-1.amazonaws.com/java-job-class'
+    registry = '241364083407.dkr.ecr.us-east-1.amazonaws.com/java-job-class'
     registryCredential = 'jenkins-ecr'
     dockerimage = ''
 }
@@ -20,7 +20,7 @@ environment {
             
             steps {
               withSonarQubeEnv('SonarServer') {
-                  sh 'mvn sonar:sonar -Dsonar.projectKey=kserge2001_geolocation -Dsonar.java.binaries=.'
+                  sh 'mvn sonar:sonar -Dsonar.projectKey=tahirkaloo_geo-app-class -Dsonar.java.binaries=.'
               }
             }
           }
@@ -42,8 +42,8 @@ environment {
         stage('maven package') {
             steps {
                 sh 'mvn clean'
-                sh 'mvn install -DskipTests'
-                sh 'mvn package -DskipTests'
+                sh 'mvn install'
+                sh 'mvn package'
             }
         }
         stage('Build Image') {
